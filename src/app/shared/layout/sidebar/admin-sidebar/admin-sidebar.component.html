@@ -1,18 +1,25 @@
 <mat-list>
     <mat-list-item (click)="clickMenuItem()" matRipple routerLink="funcionario" routerLinkActive="active">
-      <mat-icon matListItemIcon>dashboard</mat-icon>
+      <mat-icon matListItemIcon>people_outline</mat-icon>
       <div matListItemLine>Funcionario</div>
     </mat-list-item>
     <mat-list-item (click)="clickMenuItem()" matRipple routerLink="adolescente" routerLinkActive="active">
-      <mat-icon matListItemIcon>category</mat-icon>
+      <mat-icon matListItemIcon>person</mat-icon>
       <div matListItemLine>Adolescente</div>
     </mat-list-item>
+    
+    <mat-list-item (click)="clickMenuItem()" matRipple routerLink="apoderado" routerLinkActive="active">
+      <mat-icon matListItemIcon>perm_identity</mat-icon>
+      <div matListItemLine>Apoderado</div>
+    </mat-list-item>
+
+    
     <mat-list-item (click)="clickMenuItem()" matRipple routerLink="catalogue/subcategory" routerLinkActive="active">
-      <mat-icon matListItemIcon>category</mat-icon>
+      <mat-icon matListItemIcon>event_note</mat-icon>
       <div matListItemLine>Programas</div>
     </mat-list-item>
     <mat-list-item (click)="clickMenuItem()" matRipple routerLink="product" routerLinkActive="active">
-      <mat-icon matListItemIcon>shopping_bag</mat-icon>
+      <mat-icon matListItemIcon>supervisor_account</mat-icon>
       <div matListItemLine>Tutores</div>
     </mat-list-item>
   </mat-list>

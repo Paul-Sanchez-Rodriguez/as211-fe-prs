@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path: 'adolescente',
         loadChildren: () => import('./teenager/teenager.module').then(m => m.TeenagerModule)
+      },
+      {
+        path: 'apoderado',
+        loadChildren: () => import('./attorney/attorney.module').then(m => m.AttorneyModule)
       }
     ]
   }
