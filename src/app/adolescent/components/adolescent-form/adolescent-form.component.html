@@ -1,0 +1,120 @@
+
+  <div class=" border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal text-center">
+    <div class="text-cyan-600 font-bold text-xl mb-2">{{data? 'Actualizar' : 'Registrar'}} Adolescente</div>
+  </div>
+
+
+<form class="bg-white rounded px-8 pt-6 pb-2 mb-4" [formGroup]="adolescentForm">
+  <div>
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Nombre</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Apellido Paterno</mat-label>
+      <input matInput formControlName="paternal_last_name">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Apellido Materno</mat-label>
+      <input matInput formControlName="maternal_last_name">
+    </mat-form-field>
+
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Fecha de Nacimiento</mat-label>
+      <input type="date" matInput formControlName="birthday">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Numero de Celular</mat-label>
+      <input matInput maxlength="9" formControlName="contact_information">
+      <mat-error *ngIf="adolescentForm.get('document_number')?.hasError('pattern')">
+        No ingresar letras.
+      </mat-error>
+      <mat-error *ngIf="adolescentForm.get('document_number')?.hasError('required')">
+        Falta completar
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Crimen cometido</mat-label>
+      <input matInput formControlName="crime_committed">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">fecha de Ingreso</mat-label>
+      <input type="date" matInput formControlName="date_of_admission">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">tipo de documento</mat-label>
+      <mat-select formControlName="document_type">
+        <mat-option value="DNI">DNI</mat-option>
+        <mat-option value="CE">CE</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Numero de Documento</mat-label>
+      <input matInput maxlength="11" formControlName="document_number">
+      <mat-error *ngIf="adolescentForm.get('document_number')?.hasError('pattern')">
+        No ingresar letras.
+      </mat-error>
+      <mat-error *ngIf="adolescentForm.get('document_number')?.hasError('required')">
+        Falta completar
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="Column">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Genero</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="M">Masculino</mat-option>
+        <mat-option value="F">Femenino</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</form>
+
+<form class="bg-white rounded px-8 pt-2 pb-4 mb-4" [formGroup]="addressForm">
+    <div *ngIf="data != null" class="flex">
+      <div class="flex-1">
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Historial de direcciones
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p *ngFor="let adrs of addressdata; let i = index">N°{{i+1}}. {{adrs.address}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <button class="ml-2 bg-primary text-white p-2 rounded-full" mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="addressImput= true">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field class="Column" *ngIf="data == null || addressImput">
+      <mat-label class="text-gray-700 text-sm font-bold mb-2">Ingresa la direccion</mat-label>
+      <input matInput formControlName="address">
+    </mat-form-field>
+  
+</form>
+
+<div class="rounded px-8 pt-4 pb-4 mb-4 flex justify-center gap-4">
+  <button
+    class="shadow bg-sky-400 hover:bg-sky-600  hover:text-slate-200 focus:shadow-outline focus:outline-none text-slate-800 font-bold py-2 px-4 rounded-full"
+    type="button" (click)="saveAndUpdate()">Enviar</button>
+
+  <button
+    class="shadow bg-red-500 hover:bg-red-700 hover:text-slate-500 focus:shadow-outline focus:outline-none text-slate-800 font-bold py-2 px-4 rounded-full"
+    (click)="onNoClick()">Cancelar</button>
+</div>

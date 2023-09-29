@@ -18,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: 'adolescente',
-        loadChildren: () => import('./teenager/teenager.module').then(m => m.TeenagerModule)
+        loadChildren: () => import('./adolescent/adolescent.module').then(m => m.AdolescentModule)
       },
       {
         path: 'apoderado',
