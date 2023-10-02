@@ -8,18 +8,21 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { AttorneyListComponent } from "./components/attorney-list/attorney-list.component";
 import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
+import { MatInputModule} from '@angular/material/input';
 import { NgFor, NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AttorneyFormComponent } from './components/attorney-form/attorney-form.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
     declarations: [
-        HomeAttorneyPage,AttorneyListComponent
+        HomeAttorneyPage,AttorneyListComponent, AttorneyFormComponent
     ],
     imports: [
         CommonModule,
@@ -35,7 +38,9 @@ import { MatDialogModule } from '@angular/material/dialog';
         FormsModule,
         MatIconModule,
         MatSnackBarModule,
-        MatDialogModule
+        MatDialogModule,
+        MatCardModule,
+        MatButtonModule
     ]
 })
 export class AttorneyModule { }

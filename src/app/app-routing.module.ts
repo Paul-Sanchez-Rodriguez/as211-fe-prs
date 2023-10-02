@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AdminContainerComponent } from '@soa/shared/layout/containers';
 
 const routes: Routes = [
