@@ -10,11 +10,16 @@ import { AttorneyService } from '@soa/attorney/services/attorney.service';
   styleUrls: ['./attorney-form.component.scss']
 })
 export class AttorneyFormComponent implements OnInit {
-  attorneyForm: FormGroup;
-  @Inject(MAT_DIALOG_DATA) public data!: Attorney 
+  attorneyForm!: FormGroup;
+  
 
-  constructor(private fb: FormBuilder ,  private dialogRef: MatDialogRef<AttorneyFormComponent>,private attorneyService: AttorneyService) {
+  constructor(private fb: FormBuilder ,  private dialogRef: MatDialogRef<AttorneyFormComponent>,private attorneyService: AttorneyService, 
+    @Inject(MAT_DIALOG_DATA) public data: any ) {}
+
+  ngOnInit() {
+
     this.attorneyForm = this.fb.group({
+      id: [''],
       name: ['', Validators.required],
       fatherlastname: ['', Validators.required],
       motherlastname: ['', Validators.required],
@@ -23,22 +28,27 @@ export class AttorneyFormComponent implements OnInit {
       address: ['', Validators.required],
       active: ['']
     });
-  }
 
-  ngOnInit() {
     if (this.data) {
-      // Si hay datos de abogado disponibles, llena el formulario con estos datos
-      this.attorneyForm.setValue({
-        name: this.data.name,
-        fatherlastname: this.data.fatherlastname,
-        motherlastname: this.data.motherlastname,
-        dni: this.data.dni,
-        cellphone: this.data.cellphone,
-        address: this.data.address,
-        active: this.data.active
-      });
+      this.extraction();
+      
     }
+
   }  
+
+
+  saveAndUpdate(){
+    if(this.data){
+
+      this.attorneyService.updateAttorney(this.attorneyForm.value.id,this.attorneyForm.value).subscribe(res =>{
+        this.attorneyForm.reset();
+        this.dialogRef.close(res);
+      })
+
+    }else{
+      this.onSubmit()
+    }
+  }
 
   onSubmit() {
     if (this.attorneyForm.valid) {
@@ -59,4 +69,17 @@ export class AttorneyFormComponent implements OnInit {
     this.dialogRef.close();
   }
   
+
+  extraction(){
+      this.attorneyForm.patchValue({
+        id: this.data.id,
+        name: this.data.name,
+        fatherlastname: this.data.fatherlastname,
+        motherlastname: this.data.motherlastname,
+        dni: this.data.dni,
+        cellphone: this.data.cellphone,
+        address: this.data.address,
+        active: this.data.active
+      });
+  }
 }

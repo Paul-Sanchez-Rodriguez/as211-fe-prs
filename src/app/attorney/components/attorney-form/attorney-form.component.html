@@ -1,6 +1,6 @@
 <!-- attorney-form.component.html -->
 
-<form [formGroup]="attorneyForm" (ngSubmit)="onSubmit()" class="form-container">
+<form [formGroup]="attorneyForm" (ngSubmit)="saveAndUpdate()" class="form-container">
   <mat-form-field class="form-field">
     <mat-label>Nombre</mat-label>
     <input matInput formControlName="name" required>

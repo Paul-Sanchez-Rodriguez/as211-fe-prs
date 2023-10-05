@@ -8,7 +8,7 @@ import { Attorney } from '@soa/attorney/model/attorney.model';
   providedIn: 'root'
 })
 export class AttorneyService {
-  private apiUrl = 'http://localhost:8095/v1/attorney';
+  private apiUrl = 'http://localhost:8080/v1/attorney';
 
   constructor(private http: HttpClient) {}
 

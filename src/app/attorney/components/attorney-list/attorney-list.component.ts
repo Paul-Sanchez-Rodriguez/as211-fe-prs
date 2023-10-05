@@ -131,20 +131,10 @@ export class AttorneyListComponent implements OnInit {
     this.snackBar.open(message, 'Cerrar', config);
   }
 
-  openDialog(info?: any): void {
+  openCreateAttorneyDialog(info?: any) {
     const dialogRef = this.dialog.open(AttorneyFormComponent, {
-      width: '',
       height: '90%',
       data: info
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.loadAttorneys();
-    });
-  }
-
-  openCreateAttorneyDialog() {
-    const dialogRef = this.dialog.open(AttorneyFormComponent, {
-      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
